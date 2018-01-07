@@ -1,0 +1,200 @@
+{
+  "CreationDate": "2018-1-7",
+  "Commands": [
+    {
+      "Command": "storeEval",
+      "Target": "document.documentElement.innerHTML.match(/\\)\\s*([\\.'a-zA-Z ]+) \\$/)[1]",
+      "Value": "brand"
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/b[text()[contains(.,'Sales Order Number:')]]/parent::div/following::b",
+      "Value": "orderNumber"
+    },
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "i"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.documentElement.innerHTML.split(/>\\s*View and Print the card/).length-1",
+      "Value": "count"
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${count} codes to loop over",
+      "Value": ""
+    },
+    {
+      "Command": "while",
+      "Target": "(${i} < ${count})",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${i} + 1",
+      "Value": "i"
+    },
+    {
+      "Command": "echo",
+      "Target": "${i}",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link=View and Print the card@POS=${i}",
+      "Value": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById(\"lblCertAmount\")",
+      "Value": "labelStyle1"
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/div[@class='value']",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${amountTemp}\"; Number.parseFloat(s.replace(/[$]/g,''));",
+      "Value": "amount"
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/div[@class='gift-card-number']/div",
+      "Value": "cardNumber"
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/div[@class='pin']",
+      "Value": "pinTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${pinTemp}",
+      "Value": "pin"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelWriteCsv",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelStyle1",
+      "Value": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=lblCertAmount",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${amountTemp}\"; Number.parseFloat(s.replace(/[$]/g,''));",
+      "Value": "amount"
+    },
+    {
+      "Command": "storeAttribute",
+      "Target": "id=imgCertBarCode@src",
+      "Value": "fullUrl"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var url = new URL('fake:///${fullUrl}'); url.searchParams.get(\"CBID\");",
+      "Value": "cardNumber"
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=lblPin",
+      "Value": "pin"
+    },
+    {
+      "Command": "label",
+      "Target": "labelWriteCsv",
+      "Value": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${orderNumber}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${brand}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "csvSave",
+      "Target": "NewEgg",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "new Date().toISOString().replace(/[^0-9]/g, \"\")",
+      "Value": "timestamp"
+    },
+    {
+      "Command": "captureScreenshot",
+      "Target": "${timestamp}-NewEgg.png",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": ""
+    },
+    {
+      "Command": "endWhile",
+      "Target": "",
+      "Value": ""
+    }
+  ]
+}
