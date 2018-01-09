@@ -1,0 +1,45 @@
+{
+  "CreationDate": "2018-1-7",
+  "Commands": [
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "i"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"count(/descendant::a[@class='archive-btn'])\", document).numberValue",
+      "Value": "count"
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${count} to loop over",
+      "Value": ""
+    },
+    {
+      "Command": "while",
+      "Target": "(${i} < ${count})",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${i} + 1",
+      "Value": "i"
+    },
+    {
+      "Command": "click",
+      "Target": "link=archive@POS=${i}",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link=Yes",
+      "Value": ""
+    },
+    {
+      "Command": "endWhile",
+      "Target": "",
+      "Value": ""
+    }
+  ]
+}

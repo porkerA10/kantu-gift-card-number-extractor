@@ -1,0 +1,130 @@
+{
+  "CreationDate": "2018-1-7",
+  "Commands": [
+    {
+      "Command": "click",
+      "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,'Your order number and claim link')]][${!LOOP}]",
+      "Value": ""
+    },
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "i"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"count(/descendant::a[text()[contains(.,'View My Code')]])\", document).numberValue",
+      "Value": "count"
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${count} codes to loop over",
+      "Value": ""
+    },
+    {
+      "Command": "while",
+      "Target": "(${i} < ${count})",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${i} + 1",
+      "Value": "i"
+    },
+    {
+      "Command": "click",
+      "Target": "link=View My Code@POS=${i}",
+      "Value": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::dt[text()[contains(.,'Value')]]/../dd",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${amountTemp}\"; Number.parseFloat(s.replace(/[$]/g,''));",
+      "Value": "amount"
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::dt[text()[contains(.,'Code')]]/../dd",
+      "Value": "cardNumber"
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::dt[text()[contains(.,'Pin')]]/../dd",
+      "Value": "pin"
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "csvSave",
+      "Target": "PPDG",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "new Date().toISOString().replace(/[^0-9]/g, \"\")",
+      "Value": "timestamp"
+    },
+    {
+      "Command": "captureScreenshot",
+      "Target": "${timestamp}-PPDG.png",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": ""
+    },
+    {
+      "Command": "endWhile",
+      "Target": "",
+      "Value": ""
+    }
+  ]
+}
