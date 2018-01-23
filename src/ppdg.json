@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-1-7",
+  "CreationDate": "2018-1-23",
   "Commands": [
     {
       "Command": "click",
@@ -62,9 +62,24 @@
       "Value": "cardNumber"
     },
     {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!ErrorIgnore"
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "pin"
+    },
+    {
       "Command": "storeText",
       "Target": "/descendant::dt[text()[contains(.,'Pin')]]/../dd",
       "Value": "pin"
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!ErrorIgnore"
     },
     {
       "Command": "store",
