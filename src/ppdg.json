@@ -73,7 +73,7 @@
     },
     {
       "Command": "storeText",
-      "Target": "/descendant::dt[text()[contains(.,'Pin')]]/../dd",
+      "Target": "/descendant::dt[text()[contains(translate(.,'pin','PIN'),'PIN')]]/../dd",
       "Value": "pin"
     },
     {
