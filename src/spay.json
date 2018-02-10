@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-2-5",
+  "CreationDate": "2018-2-10",
   "Commands": [
     {
       "Command": "click",
@@ -47,6 +47,11 @@
       "Value": ""
     },
     {
+      "Command": "if",
+      "Target": "document.evaluate(\"count(/descendant::h1[@class='off-page'])\", document).numberValue === 1",
+      "Value": ""
+    },
+    {
       "Command": "storeText",
       "Target": "/descendant::h1[@class='off-page']",
       "Value": "brandTemp"
@@ -63,7 +68,7 @@
     },
     {
       "Command": "storeEval",
-      "Target": "var s=\"${amountTemp}\"; Number.parseFloat(/.+[$](\\d+)/.exec(s)[1]);",
+      "Target": "var s=\"${amountTemp}\"; Number.parseFloat(/.*[$](\\d+)/.exec(s)[1]);",
       "Value": "amount"
     },
     {
@@ -87,8 +92,53 @@
       "Value": "pin"
     },
     {
+      "Command": "else",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='main']/h1",
+      "Value": "brandTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${brandTemp}\"; s.replace('Your ','').replace(/(\\$[\\d]+)? eGift card/i,'').trim();",
+      "Value": "brand"
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='showCardInfo']/h2",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${amountTemp}\"; Number.parseFloat(/.*[$](\\d+)/.exec(s)[1]);",
+      "Value": "amount"
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=cardNumber2",
+      "Value": "cardNumberTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${cardNumberTemp}\"; s.replace(/ /g,'');",
+      "Value": "cardNumber"
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='cardNum']/p[2]/span",
+      "Value": "pin"
+    },
+    {
+      "Command": "endif",
+      "Target": "",
+      "Value": ""
+    },
+    {
       "Command": "echo",
-      "Target": "Found ${amountTemp} and ${amount} ${cardNumber} unkay orig ${cardNumberTemp} pin is  ${pin} unkay orig ${pinTemp}",
+      "Target": "Found ${amountTemp} and ${amount} ${cardNumber} unkay orig ${cardNumberTemp} pin is ${pin}",
       "Value": ""
     },
     {
