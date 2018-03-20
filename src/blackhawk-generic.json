@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-2-10",
+  "CreationDate": "2018-3-20",
   "Commands": [
     {
       "Command": "selectWindow",
@@ -217,6 +217,16 @@
       "Value": "amount"
     },
     {
+      "Command": "storeEval",
+      "Target": "''",
+      "Value": "pin"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "''",
+      "Value": "pinTemp"
+    },
+    {
       "Command": "gotoIf",
       "Target": "document.getElementById('pin') === null",
       "Value": "labelPinTry2"
@@ -282,9 +292,24 @@
       "Value": ""
     },
     {
+      "Command": "if",
+      "Target": "\"${pinTemp}\".length",
+      "Value": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${pinTemp}",
+      "Value": ""
+    },
+    {
       "Command": "storeEval",
-      "Target": "var s=\"${pinTemp}\"; /.*?(\\d+)/.exec(s)[1];",
+      "Target": "var s=\"${pinTemp}\"; var regex = /.*?(\\d+)/.exec(s); regex && regex.length > 1 ? regex[1] : s.trim();",
       "Value": "pin"
+    },
+    {
+      "Command": "endif",
+      "Target": "",
+      "Value": ""
     },
     {
       "Command": "echo",
