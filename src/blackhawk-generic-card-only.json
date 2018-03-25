@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-3-20",
+  "CreationDate": "2018-3-25",
   "Commands": [
     {
       "Command": "selectWindow",
@@ -15,6 +15,31 @@
       "Command": "storeEval",
       "Target": "var s=\"${cardNumberTemp}\"; s.replace(/ /g,'');",
       "Value": "cardNumber"
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('egc-brand') === null",
+      "Value": "labelBrandTry0"
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=egc-brand",
+      "Value": "brandTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "\"${brandTemp}\"",
+      "Value": "brand"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelBrandDone",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandTry0",
+      "Value": ""
     },
     {
       "Command": "gotoIf",
@@ -119,6 +144,26 @@
     {
       "Command": "label",
       "Target": "labelBrandDone",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('egc-amount') === null",
+      "Value": "labelAmountTempTry1"
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=egc-amount",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry1",
       "Value": ""
     },
     {
@@ -279,11 +324,26 @@
     {
       "Command": "gotoIf",
       "Target": "document.evaluate(\"count(/descendant::div[@id='cardInfo']/p[3]/span)\", document).numberValue === 0",
-      "Value": "labelPinDone"
+      "Value": "labelPinTry5"
     },
     {
       "Command": "storeText",
       "Target": "/descendant::div[@id='cardInfo']/p[3]/span",
+      "Value": "pinTemp"
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry5",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::span[@class='barcode-label'])\", document).numberValue === 0",
+      "Value": "labelPinDone"
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::span[@class='barcode-label']",
       "Value": "pinTemp"
     },
     {
