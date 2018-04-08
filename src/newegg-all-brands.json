@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-1-7",
+  "CreationDate": "2018-4-8",
   "Commands": [
     {
       "Command": "storeEval",
@@ -77,14 +77,19 @@
       "Value": "cardNumber"
     },
     {
-      "Command": "storeText",
-      "Target": "//*/div[@class='pin']",
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::div[@class='pin']\", document).iterateNext().innerText.replace(/pin:\\s*/i, '')",
       "Value": "pinTemp"
     },
     {
       "Command": "storeEval",
-      "Target": "${pinTemp}",
+      "Target": "\"${pinTemp}\"",
       "Value": "pin"
+    },
+    {
+      "Command": "echo",
+      "Target": "Values ${pinTemp} and pin ${pin}",
+      "Value": ""
     },
     {
       "Command": "gotoLabel",
