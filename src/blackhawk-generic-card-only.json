@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-3-25",
+  "CreationDate": "2018-4-9",
   "Commands": [
     {
       "Command": "selectWindow",
@@ -247,6 +247,26 @@
       "Value": ""
     },
     {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('value') === null",
+      "Value": "labelAmountTempTry6"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::div[@id='value']\", document).iterateNext().innerText.trim()",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry6",
+      "Value": ""
+    },
+    {
       "Command": "storeEval",
       "Target": "\"${amountBackup}\"",
       "Value": "amountTemp"
@@ -258,7 +278,7 @@
     },
     {
       "Command": "storeEval",
-      "Target": "/\\$?([\\d]+)/.exec('${amountTemp}')[1];",
+      "Target": "/[\\w: ]*\\$?([\\d]+)/.exec('${amountTemp}')[1];",
       "Value": "amount"
     },
     {
@@ -302,6 +322,11 @@
       "Value": "pinTemp"
     },
     {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": ""
+    },
+    {
       "Command": "label",
       "Target": "labelPinTry3",
       "Value": ""
@@ -315,6 +340,11 @@
       "Command": "storeText",
       "Target": "/descendant::div[@class='cardNum']/p[2]/span",
       "Value": "pinTemp"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": ""
     },
     {
       "Command": "label",
@@ -332,8 +362,33 @@
       "Value": "pinTemp"
     },
     {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": ""
+    },
+    {
       "Command": "label",
       "Target": "labelPinTry5",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::p[strong[text()='PIN:']])\", document).numberValue === 0",
+      "Value": "labelPinTry6"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::p[strong[text()='PIN:']]\", document).iterateNext().innerText.trim()",
+      "Value": "pinTemp"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry6",
       "Value": ""
     },
     {
@@ -370,6 +425,11 @@
       "Command": "endif",
       "Target": "",
       "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${brand}\"; s.replace('Gap Options','Gap').replace('Overstock.com','Overstock').replace('Darden eGift Card','Olive Garden');",
+      "Value": "brand"
     },
     {
       "Command": "echo",
