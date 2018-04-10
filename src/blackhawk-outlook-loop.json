@@ -1,9 +1,29 @@
 {
-  "CreationDate": "2018-2-10",
+  "CreationDate": "2018-4-10",
   "Commands": [
+    {
+      "Command": "if",
+      "Target": "document.evaluate(\"count(/descendant::span[@autoid='_lvv_g' and text()[contains(.,'A Gift Card for you!')]])\", document).numberValue > 0",
+      "Value": ""
+    },
     {
       "Command": "click",
       "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,'A Gift Card for you!')]][${!LOOP}]",
+      "Value": ""
+    },
+    {
+      "Command": "else",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,' eGift Card!')]][${!LOOP}]",
+      "Value": ""
+    },
+    {
+      "Command": "endif",
+      "Target": "",
       "Value": ""
     },
     {
@@ -47,6 +67,11 @@
       "Value": ""
     },
     {
+      "Command": "storeEval",
+      "Target": "''",
+      "Value": "pin"
+    },
+    {
       "Command": "if",
       "Target": "document.evaluate(\"count(/descendant::h1[@class='off-page'])\", document).numberValue === 1",
       "Value": ""
@@ -80,11 +105,6 @@
       "Command": "storeEval",
       "Target": "var s=\"${cardNumberTemp}\"; s.replace(/ /g,'');",
       "Value": "cardNumber"
-    },
-    {
-      "Command": "storeText",
-      "Target": "id=pin",
-      "Value": "pinTemp"
     },
     {
       "Command": "storeEval",
@@ -127,14 +147,29 @@
       "Value": "cardNumber"
     },
     {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='cardNum']/p[2]/span)\", document).numberValue === 0",
+      "Value": "labelPinDone"
+    },
+    {
       "Command": "storeText",
       "Target": "/descendant::div[@class='cardNum']/p[2]/span",
       "Value": "pin"
     },
     {
+      "Command": "label",
+      "Target": "labelPinDone",
+      "Value": ""
+    },
+    {
       "Command": "endif",
       "Target": "",
       "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${brand}\"; s.replace('Gap Options','Gap').replace('Overstock.com','Overstock').replace('Darden eGift Card','Olive Garden');",
+      "Value": "brand"
     },
     {
       "Command": "echo",
@@ -178,7 +213,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "SPay",
+      "Target": "BHN",
       "Value": ""
     },
     {
@@ -188,7 +223,7 @@
     },
     {
       "Command": "captureScreenshot",
-      "Target": "${timestamp}-PPDG.png",
+      "Target": "${timestamp}-SPay.png",
       "Value": ""
     },
     {
