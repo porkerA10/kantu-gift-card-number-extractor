@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-4-9",
+  "CreationDate": "2018-4-10",
   "Commands": [
     {
       "Command": "selectWindow",
@@ -7,9 +7,34 @@
       "Value": ""
     },
     {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('cardNumber2') === null",
+      "Value": "labelCardNumberTry1"
+    },
+    {
       "Command": "storeText",
       "Target": "id=cardNumber2",
       "Value": "cardNumberTemp"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelCardNumberDone",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberTry1",
+      "Value": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='cardNum']/p/span",
+      "Value": "cardNumberTemp"
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberDone",
+      "Value": ""
     },
     {
       "Command": "storeEval",
@@ -428,7 +453,7 @@
     },
     {
       "Command": "storeEval",
-      "Target": "var s=\"${brand}\"; s.replace('Gap Options','Gap').replace('Overstock.com','Overstock').replace('Darden eGift Card','Olive Garden');",
+      "Target": "var s=\"${brand}\"; s.replace('Gap Options','Gap').replace('Overstock.com','Overstock').replace('Darden eGift Card','Olive Garden').replace('Wayfair','Wayfair.com');",
       "Value": "brand"
     },
     {
