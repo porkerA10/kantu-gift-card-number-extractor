@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-4-8",
+  "CreationDate": "2018-4-18",
   "Commands": [
     {
       "Command": "storeEval",
@@ -72,9 +72,39 @@
       "Value": "amount"
     },
     {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='gift-card-number']/div)\", document).numberValue === 0",
+      "Value": "labelCardNumberTry1"
+    },
+    {
       "Command": "storeText",
       "Target": "//*/div[@class='gift-card-number']/div",
       "Value": "cardNumber"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelCardNumberDone",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberTry1",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::div[@class='gift-card-number']\", document).iterateNext().innerText.trim()",
+      "Value": "cardNumberTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${cardNumberTemp}\"; s.replace('Card #:','').trim();",
+      "Value": "cardNumber"
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberDone",
+      "Value": ""
     },
     {
       "Command": "storeEval",
