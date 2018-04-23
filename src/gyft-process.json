@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-1-7",
+  "CreationDate": "2018-4-23",
   "Commands": [
     {
       "Command": "store",
@@ -94,11 +94,26 @@
     {
       "Command": "gotoIf",
       "Target": "document.evaluate(\"count(/descendant::p[@class='col-header' and text()[contains(.,'PIN #')]])\", document).numberValue === 0",
-      "Value": "noPin"
+      "Value": "labelPinTry2"
     },
     {
       "Command": "storeText",
       "Target": "/descendant::p[@class='col-header' and text()[contains(.,'PIN #')]]/following-sibling::p",
+      "Value": "pin"
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry2",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::p[@class='col-header' and text()[contains(.,'Pin Number')]])\", document).numberValue === 0",
+      "Value": "noPin"
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::p[@class='col-header' and text()[contains(.,'Pin Number')]]/following-sibling::p",
       "Value": "pin"
     },
     {
