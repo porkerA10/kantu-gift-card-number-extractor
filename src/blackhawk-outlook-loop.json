@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-5-7",
+  "CreationDate": "2018-5-28",
   "Commands": [
     {
       "Command": "if",
@@ -33,7 +33,7 @@
     },
     {
       "Command": "storeEval",
-      "Target": "document.evaluate(\"count(/descendant::a[contains(@href,'https://egift.activationspot.com/egift')])\", document).numberValue",
+      "Target": "document.evaluate(\"count(/descendant::a[contains(@href,'https://egift.activationspot.com/egift') or contains(@originalsrc,'https://egift.activationspot.com/egift')])\", document).numberValue",
       "Value": "count"
     },
     {
@@ -53,7 +53,7 @@
     },
     {
       "Command": "click",
-      "Target": "/descendant::a[contains(@href,'https://egift.activationspot.com/egift')][${i}]",
+      "Target": "/descendant::a[contains(@href,'https://egift.activationspot.com/egift') or contains(@originalsrc,'https://egift.activationspot.com/egift')][${i}]",
       "Value": ""
     },
     {
