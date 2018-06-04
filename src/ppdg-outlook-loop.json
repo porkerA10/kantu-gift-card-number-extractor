@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-3-20",
+  "CreationDate": "2018-6-4",
   "Commands": [
     {
       "Command": "click",
@@ -123,7 +123,7 @@
     },
     {
       "Command": "captureScreenshot",
-      "Target": "${timestamp}-PPDG.png",
+      "Target": "${timestamp}_PPDG.png",
       "Value": ""
     },
     {
