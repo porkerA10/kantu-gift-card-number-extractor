@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-4-10",
+  "CreationDate": "2018-6-4",
   "Commands": [
     {
       "Command": "selectWindow",
@@ -508,7 +508,7 @@
     },
     {
       "Command": "captureScreenshot",
-      "Target": "${timestamp}-BHN.png",
+      "Target": "${timestamp}_BHN.png",
       "Value": ""
     }
   ]
