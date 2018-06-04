@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-5-28",
+  "CreationDate": "2018-6-4",
   "Commands": [
     {
       "Command": "if",
@@ -483,7 +483,7 @@
     },
     {
       "Command": "captureScreenshot",
-      "Target": "${timestamp}-BHN.png",
+      "Target": "${timestamp}_BHN.png",
       "Value": ""
     },
     {
