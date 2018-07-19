@@ -1,9 +1,9 @@
 {
-  "CreationDate": "2018-1-7",
+  "CreationDate": "2018-7-19",
   "Commands": [
     {
       "Command": "click",
-      "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,'Year of Yummm! sent you a Red Robin Year')]][${!LOOP}]",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text() = 'Year of Yummm! sent you a Red Robin Year of Yummm eGift!'][${!LOOP}]",
       "Value": ""
     },
     {
@@ -13,7 +13,7 @@
     },
     {
       "Command": "storeEval",
-      "Target": "document.querySelectorAll('[title=\"Activate!\"]').length",
+      "Target": "document.querySelectorAll('[alt=\"Activate!\"]').length",
       "Value": "count"
     },
     {
@@ -33,7 +33,7 @@
     },
     {
       "Command": "click",
-      "Target": "/descendant::img[attribute::title='Activate!'][${i}]",
+      "Target": "/descendant::img[attribute::alt='Activate!'][${i}]",
       "Value": ""
     },
     {
@@ -69,16 +69,6 @@
     {
       "Command": "store",
       "Target": "${cardNumber}",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
       "Value": "!csvLine"
     },
     {
