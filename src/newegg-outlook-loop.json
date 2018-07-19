@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-6-4",
+  "CreationDate": "2018-7-19",
   "Commands": [
     {
       "Command": "storeEval",
@@ -184,16 +184,6 @@
     {
       "Command": "store",
       "Target": "${pin}",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
       "Value": "!csvLine"
     },
     {
