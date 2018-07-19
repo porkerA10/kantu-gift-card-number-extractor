@@ -1,0 +1,245 @@
+{
+  "CreationDate": "2018-7-19",
+  "Commands": [
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "currentProc"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"count(/descendant::div[starts-with(@title,'proc')])\", document).numberValue",
+      "Value": "procCount"
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${procCount} proc folders to loop over",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "procLoopLabel",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${currentProc} + 1",
+      "Value": "currentProc"
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[starts-with(@title,'proc')][${currentProc}]",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::div[starts-with(@title,'proc')][${currentProc}]/@title\", document).iterateNext().value",
+      "Value": "accountTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "\"${accountTemp}\".replace(/proc\\d+_/i,'').trim();",
+      "Value": "accountName"
+    },
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "currentEmail"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"count(/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'A Gift Card for you!') or contains(.,' eGift Card!')]])\", document).numberValue",
+      "Value": "emailCount"
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${emailCount} emails to loop over for ${accountName}",
+      "Value": ""
+    },
+    {
+      "Command": "while",
+      "Target": "(${currentEmail} < ${emailCount})",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${currentEmail} + 1",
+      "Value": "currentEmail"
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "orderNumber"
+    },
+    {
+      "Command": "if",
+      "Target": "document.evaluate(\"count(/descendant::div[@aria-label='Message list']/descendant::span[text() = 'Samsung Pay Gift Card Purchase Receipt'][${currentEmail}])\", document).numberValue > 0",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text() = 'Samsung Pay Gift Card Purchase Receipt'][${currentEmail}]",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::td[text()[contains(.,'ORDER #')]]/following-sibling::td\", document).iterateNext().textContent.trim()",
+      "Value": "orderNumber"
+    },
+    {
+      "Command": "endif",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'A Gift Card for you!') or contains(.,' eGift Card!')]][${currentEmail}]",
+      "Value": ""
+    },
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "currentGcLink"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"count(/descendant::a[contains(@href,'https://mygiftcard.gyft.com/card') or contains(@originalsrc,'https://mygiftcard.gyft.com/card')])\", document).numberValue",
+      "Value": "gcLinkCount"
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${gcLinkCount} codes to loop over",
+      "Value": ""
+    },
+    {
+      "Command": "label",
+      "Target": "gcLinkLoopLabel",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "${currentGcLink} + 1",
+      "Value": "currentGcLink"
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::a[contains(@href,'https://mygiftcard.gyft.com/card') or contains(@originalsrc,'https://mygiftcard.gyft.com/card')][${currentGcLink}]",
+      "Value": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::div[@class='my-gift-card-reveal']/descendant::div[contains(@class,'my-value')]\", document).iterateNext().textContent.trim()",
+      "Value": "cardNumber"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::table[@class='my-gift-card-summary']/descendant::div[contains(@class,'my-name')]\", document).iterateNext().textContent.trim()",
+      "Value": "brand"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::table[@class='my-gift-card-summary']/descendant::div[contains(@class,'my-amount')]\", document).iterateNext().textContent.trim()",
+      "Value": "amountTemp"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "/[\\w: ]*\\$?([\\d]+)/.exec('${amountTemp}')[1];",
+      "Value": "amount"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "''",
+      "Value": "pin"
+    },
+    {
+      "Command": "storeEval",
+      "Target": "var s=\"${brand}\"; s.replace('Gap Options','Gap').replace('Overstock.com','Overstock').replace('Darden eGift Card','Olive Garden').replace('Wayfair','Wayfair.com').replace('Brinker Restaurants',\"Chili's\");",
+      "Value": "brand"
+    },
+    {
+      "Command": "store",
+      "Target": "${orderNumber}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${brand}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "store",
+      "Target": "${accountName}",
+      "Value": "!csvLine"
+    },
+    {
+      "Command": "csvSave",
+      "Target": "SPayGyft",
+      "Value": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "new Date().toISOString().replace(/[^0-9]/g, \"\")",
+      "Value": "timestamp"
+    },
+    {
+      "Command": "captureScreenshot",
+      "Target": "${timestamp}_SPayGift.png",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "(${currentGcLink} < ${gcLinkCount})",
+      "Value": "gcLinkLoopLabel"
+    },
+    {
+      "Command": "endWhile",
+      "Target": "",
+      "Value": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "(${currentProc} < ${procCount})",
+      "Value": "procLoopLabel"
+    }
+  ]
+}
