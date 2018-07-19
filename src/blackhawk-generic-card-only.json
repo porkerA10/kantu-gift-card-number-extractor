@@ -1,5 +1,5 @@
 {
-  "CreationDate": "2018-6-4",
+  "CreationDate": "2018-7-19",
   "Commands": [
     {
       "Command": "selectWindow",
@@ -137,8 +137,8 @@
       "Value": "labelBrandTempDone"
     },
     {
-      "Command": "storeText",
-      "Target": "/descendant::div[@class='headingText']/h1",
+      "Command": "storeEval",
+      "Target": "document.evaluate(\"/descendant::div[@class='headingText']/h1\", document).iterateNext().innerText.replace(`\\n`, ' ').trim()",
       "Value": "brandTemp"
     },
     {
@@ -148,22 +148,17 @@
     },
     {
       "Command": "storeEval",
-      "Target": "var s=\"${brandTemp}\"; s.replace(/.*your (.+) eGift card/i,'$1').replace(/(\\$[\\d]+( USD)?)/g,'').replace(/[^a-zA-Z 0-9.']+/g,'').trim();",
-      "Value": "brand"
-    },
-    {
-      "Command": "storeEval",
-      "Target": "var s=\"${brandTemp}\"; s.replace(/.*your (.+) eGift card/i,'$1').trim();",
+      "Target": "var s=`${brandTemp}`; s.replace(/.*your (.+) eGift card( for)?/i,'$1').trim();",
       "Value": "brandWithAmount"
     },
     {
       "Command": "storeEval",
-      "Target": "var s=\"${brandWithAmount}\"; s.replace(/(\\$[\\d]+( USD)?)/g,'').replace(/[^a-zA-Z 0-9.']+/g,'').trim();",
+      "Target": "var s=`${brandWithAmount}`; s.replace(/(\\$[\\d]+( USD)?)/g,'').replace(/[^a-zA-Z 0-9.']+/g,'').trim();",
       "Value": "brand"
     },
     {
       "Command": "storeEval",
-      "Target": "var s=\"${brandWithAmount}\"; s.replace(/.*(\\$[\\d]+( USD)?).*/,'$1');",
+      "Target": "var s=`${brandWithAmount}`; s.replace(/.*(\\$[\\d]+( USD)?).*/,'$1');",
       "Value": "amountBackup"
     },
     {
@@ -479,16 +474,6 @@
     {
       "Command": "store",
       "Target": "${pin}",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
       "Value": "!csvLine"
     },
     {
