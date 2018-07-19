@@ -1,9 +1,9 @@
 {
-  "CreationDate": "2018-6-4",
+  "CreationDate": "2018-7-19",
   "Commands": [
     {
       "Command": "click",
-      "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,'Your order number and claim link')]][${!LOOP}]",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your order number and claim link')]][${!LOOP}]",
       "Value": ""
     },
     {
@@ -94,16 +94,6 @@
     {
       "Command": "store",
       "Target": "${pin}",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
       "Value": "!csvLine"
     },
     {
