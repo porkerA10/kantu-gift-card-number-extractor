@@ -1,14 +1,14 @@
 {
-  "CreationDate": "2018-6-4",
+  "CreationDate": "2018-7-19",
   "Commands": [
     {
       "Command": "if",
-      "Target": "document.evaluate(\"count(/descendant::span[@autoid='_lvv_g' and text()[contains(.,'A Gift Card for you!')]])\", document).numberValue > 0",
+      "Target": "document.evaluate(\"count(/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'A Gift Card for you!')]])\", document).numberValue > 0",
       "Value": ""
     },
     {
       "Command": "click",
-      "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,'A Gift Card for you!')]][${!LOOP}]",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'A Gift Card for you!')]][${!LOOP}]",
       "Value": ""
     },
     {
@@ -18,7 +18,7 @@
     },
     {
       "Command": "click",
-      "Target": "/descendant::span[@autoid='_lvv_g' and text()[contains(.,' eGift Card!')]][${!LOOP}]",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,' eGift Card!')]][${!LOOP}]",
       "Value": ""
     },
     {
@@ -454,16 +454,6 @@
     {
       "Command": "store",
       "Target": "${pin}",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
-      "Value": "!csvLine"
-    },
-    {
-      "Command": "store",
-      "Target": "",
       "Value": "!csvLine"
     },
     {
