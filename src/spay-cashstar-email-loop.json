@@ -1,0 +1,810 @@
+{
+  "Name": "SPay CashStar Email Loop",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return 0;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"count(/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Here is your')]])\", document).numberValue;",
+      "Value": "emailCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${emailCount} emails to loop over",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentEmail} < ${emailCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${currentEmail} + 1;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "orderNumber",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Here is your')]][${currentEmail}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::h3[contains(text(), 'ORDER #:')]",
+      "Value": "orderNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${orderNumberTemp}.replace('ORDER #: ', '');",
+      "Value": "orderNumber",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::td[contains(text(), 'Deliver to:')]/span",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::a[contains(@href,'https://samsung-gcm.cashstar.com/gift-card/view/') or contains(@originalsrc,'https://samsung-gcm.cashstar.com/gift-card/view/')]/span",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=challenge-email",
+      "Value": "${email}",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/descendant::form/div/button[@type='submit']",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('cardNumber2') === null",
+      "Value": "labelCardNumberTry1",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=cardNumber2",
+      "Value": "cardNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelCardNumberDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberTry1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='cardNum']/p/span",
+      "Value": "cardNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${cardNumberTemp}.replace(/ /g,'');",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('egc-brand') === null",
+      "Value": "labelBrandTry0",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=egc-brand",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${brandTemp}",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelBrandDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandTry0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@id='main']/h2/span)\", document).numberValue === 0",
+      "Value": "labelBrandTry1",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='main']/h2/span",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${brandTemp};",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelBrandDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandTry1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::h1[@class='off-page'])\", document).numberValue === 0",
+      "Value": "labelBrandTry2",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::h1[@class='off-page']",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelBrandTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandTry2",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@id='main']/h1)\", document).numberValue === 0",
+      "Value": "labelBrandTry3",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='main']/h1",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelBrandTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandTry3",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='headingText']/h1)\", document).numberValue === 0",
+      "Value": "labelBrandTempDone",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"/descendant::div[@class='headingText']/h1\", document).iterateNext().innerText.replace(`\\n`, ' ').trim();",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${brandTemp}.replace(/.*your (.+) eGift card( for)?/i,'$1').trim();",
+      "Value": "brandWithAmount",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${brandWithAmount}.replace(/(\\$[\\d]+( USD)?)/g,'').replace(/[^a-zA-Z 0-9.']+/g,'').trim();",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${brandWithAmount}.replace(/.*(\\$[\\d]+( USD)?).*/,'$1');",
+      "Value": "amountBackup",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelBrandDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('egc-amount') === null",
+      "Value": "labelAmountTempTry1",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=egc-amount",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('amount') === null",
+      "Value": "labelAmountTempTry2",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=amount",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry2",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='showCardInfo']/h2)\", document).numberValue === 0",
+      "Value": "labelAmountTempTry3",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='showCardInfo']/h2",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry3",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@id='tofrom']/h2)\", document).numberValue === 0",
+      "Value": "labelAmountTempTry4",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='tofrom']/h2",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry4",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@id='main']/h1/span)\", document).numberValue === 0",
+      "Value": "labelAmountTempTry5",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='main']/h1/span",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry5",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('value') === null",
+      "Value": "labelAmountTempTry6",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"/descendant::div[@id='value']\", document).iterateNext().innerText.trim();",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempTry6",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${amountBackup}",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTempDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return /[\\w: $]*?([\\d]+)/.exec(${amountTemp})[1];",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return '';",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return '';",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('pin') === null",
+      "Value": "labelPinTry2",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=pin",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry2",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='cardPin']/p/span)\", document).numberValue === 0",
+      "Value": "labelPinTry3",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='cardPin']/p/span",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry3",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='cardNum']/p[2]/span)\", document).numberValue === 0",
+      "Value": "labelPinTry4",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='cardNum']/p[2]/span",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry4",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@id='cardInfo']/p[3]/span)\", document).numberValue === 0",
+      "Value": "labelPinTry5",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='cardInfo']/p[3]/span",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry5",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::p[strong[text()='PIN:']])\", document).numberValue === 0",
+      "Value": "labelPinTry6",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"/descendant::p[strong[text()='PIN:']]\", document).iterateNext().innerText.trim();",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry6",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(`count(/descendant::div[@id='tofrom']/p/strong[text()='Pin:']/../span)`, document).numberValue === 0",
+      "Value": "labelPinTry7",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='tofrom']/p/strong[text()='Pin:']/../span",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry7",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::p[@id='pin-num']/span)\", document).numberValue === 0",
+      "Value": "labelPinTry8",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::p[@id='pin-num']/span",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry8",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::span[@class='barcode-label'])\", document).numberValue === 0",
+      "Value": "labelPinDone",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::span[@class='barcode-label']",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${pinTemp}.length",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${pinTemp}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf_v2",
+      "Target": "${brand} === 'Sony PlayStation'",
+      "Value": "labelTextPin",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf_v2",
+      "Target": "${brand} === 'StubHub'",
+      "Value": "labelAlphaPin",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "var s= ${pinTemp}; var regex = /.*?(\\d+)/.exec(s); return regex && regex.length > 1 ? regex[1] : s.trim();",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinParseDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelTextPin",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeEval",
+      "Target": "return ${pinTemp};",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinParseDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAlphaPin",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${pinTemp};",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinParseDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${brand}.replace('Gap Options','Gap').replace('Overstock.com','Overstock').replace('Darden eGift Card','Olive Garden').replace('Wayfair','Wayfair.com').replace('Home Depot','The Home Depot').replace('Cracker Barrel from','Cracker Barrel Old Country Store®').replace('s Restaurant  Brewhouse','s Restaurant and Brewhouse');",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${brandTemp} - '${brand}' amounttemp ${amountTemp} amount: ${amount} ${cardNumber} unkay orig ${cardNumberTemp} pin is temp ${pinTemp} and ${pin}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${orderNumber}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${brand}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${email}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "spay",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
