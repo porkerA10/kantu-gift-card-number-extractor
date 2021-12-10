@@ -1,0 +1,114 @@
+{
+  "Name": "PPDG Email Loop",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "store",
+      "Target": "60000",
+      "Value": "delayBetweenOrdersMilliSeconds",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return 0;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your order number and claim link')]]",
+      "Value": "emailCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${emailCount} emails to loop over",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentEmail} < ${emailCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${currentEmail} + 1;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your order number and claim link')]][${currentEmail}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[label='To:']/ul/li[1]",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return ${email}.replace(/^You$/,'davidowilliams@hotmail.com');",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=descendant::a[contains(text(), 'View My Code')]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "run",
+      "Target": "PPDG Generic Card Only",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "${delayBetweenOrdersMilliSeconds}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
