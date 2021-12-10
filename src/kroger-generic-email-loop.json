@@ -1,0 +1,132 @@
+{
+  "Name": "Kroger Generic Email Loop",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return 0;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your Order is Complete!')]]",
+      "Value": "emailCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${emailCount} emails to loop over",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentEmail} < ${emailCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${currentEmail} + 1;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your Order is Complete!')]][${currentEmail}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[label='To:']/ul/li[1]",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return 0;",
+      "Value": "currentLink",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::a[text()='Click to Access eGift']",
+      "Value": "linkCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${linkCount} links in the email",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentLink} < ${linkCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${currentLink} + 1;",
+      "Value": "currentLink",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::a[text()='Click to Access eGift'][${currentLink}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "run",
+      "Target": "BHN Generic Card Only",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
