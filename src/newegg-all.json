@@ -1,0 +1,120 @@
+{
+  "Name": "NewEgg All",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[label='To:']/ul/li[1]",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return ${email}.replace(/^You$/,'davidowilliams@hotmail.com');",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::a[contains(text(),'Gift Card (Email Delivery)')]",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return ${brandTemp}.replace(/[$].*/,'').trim();",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/td[text()[contains(.,'Sales Order Number:')]]",
+      "Value": "orderNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return ${orderNumberTemp}.replace(/.*:/g,'').trim();",
+      "Value": "orderNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "i",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::a[contains(text(),'View and Print the card')]",
+      "Value": "count",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${count} codes to loop over",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "(${i} < ${count})",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number.parseInt(${i}) + 1",
+      "Value": "i",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "${i}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=descendant::a[contains(text(), \"and Print the card\")][${i}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "run",
+      "Target": "VCDelivery Generic Card Only",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "endWhile",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
