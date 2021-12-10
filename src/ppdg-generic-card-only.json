@@ -1,0 +1,174 @@
+{
+  "Name": "PPDG Generic Card Only",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${test}",
+      "Value": "testOverride",
+      "Description": "Pointless assignment to try and fix issue with passing variables"
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "testOverride",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!statusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${email}",
+      "Value": "emailOverride",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "emailOverride",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!statusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::a[@data-pa-click='OpenSkip'])\", document).numberValue === 0",
+      "Value": "skipDoneLabel",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::a[@data-pa-click='OpenSkip']",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "skipDoneLabel",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@data-nemo='giftcardname']",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@data-nemo='giftcardprice']",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::span[contains(@class,'e1qejv2617')][1]",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::span[contains(@class,'e1qejv2617')][2]",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${brand}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${email}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "PPDG",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
