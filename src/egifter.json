@@ -1,0 +1,96 @@
+{
+  "Name": "eGifter",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::button[span/span[@key='LineItemCode_ViewCardButton']][1])\", document).numberValue === 0",
+      "Value": "nextCardLabel",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::button[span/span[@key=\"LineItemCode_ViewCardButton\"]][1]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "nextCardLabel",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::b[contains(text(),'$')]",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return /[\\w: $]*?([\\d]+)/.exec(${amountTemp})[1];",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[contains(@class,'cardBackCode')]/p",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[contains(@class,'cardBackPin')]/p",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "eGifter",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::button[@disabled='disabled']/descendant::span[text()[contains(.,'Next Card')]])\", document).numberValue > 0",
+      "Value": "endLabel",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::button/descendant::span[contains(text(),'Next Card')]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "nextCardLabel",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "endLabel",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
