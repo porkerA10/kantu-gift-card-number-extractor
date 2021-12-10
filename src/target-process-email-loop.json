@@ -1,0 +1,168 @@
+{
+  "Name": "Target Process Email Loop",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return 0;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Good news! A ')]]",
+      "Value": "emailCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${emailCount} emails to loop over",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentEmail} < ${emailCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${currentEmail} + 1;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Good news! A ')]][${currentEmail}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[label='To:']/ul/li[1]",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${email}.replace(/^You$/,'davidowilliams@hotmail.com');",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::a[contains(@href,'www.targetgiftcardcenter.com/') or contains(@originalsrc,'www.targetgiftcardcenter.com/')]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=EmailAddress",
+      "Value": "${email}",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/descendant::input[@type='submit']",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/descendant::a[text()='View eGift']",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='egift-order-info']/span/b",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=2",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${brand}.includes('Happy') || ${brand}.includes('Wounded Warrior') || ${brand}.includes('TheChoice') || ${brand}.includes('Game & Grub') || ${brand}.includes('Giving Good') || ${brand}.includes('Cheers')",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "run",
+      "Target": "BHN Happy Card Only",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "elseif",
+      "Target": "${brand}.includes('Apple')",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "run",
+      "Target": "BHN Apple Card Only",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "else",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "run",
+      "Target": "BHN Generic Card Only",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
