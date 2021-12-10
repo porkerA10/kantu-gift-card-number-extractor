@@ -1,0 +1,444 @@
+{
+  "Name": "VCDelivery Generic Card Only",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${orderNumber}",
+      "Value": "orderNumberOverride",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "orderNumberOverride",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!statusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${email}",
+      "Value": "emailOverride",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "emailOverride",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!statusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${brand}",
+      "Value": "brandOverride",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "",
+      "Value": "brandOverride",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!statusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(//*/div[@class='card_button']/a)\", document).numberValue === 0",
+      "Value": "skipLoadLabel",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "//*/div[@class='card_button']/a",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "skipLoadLabel",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById(\"lblCertAmount\")",
+      "Value": "labelStyle1",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='gift-card-number']/div)\", document).numberValue === 0",
+      "Value": "labelCardNumberTry1",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/div[@class='gift-card-number']/div",
+      "Value": "cardNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelCardNumberDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberTry1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"/descendant::div[@class='gift-card-number']\", document).iterateNext().innerText.trim()",
+      "Value": "cardNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelCardNumberDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${cardNumberTemp}.replace('Card #:','').replace(/.+:/g,'').replace(/\\s/g, '').trim();",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ''",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='card-number']/span[preceding-sibling::b[contains(., 'PIN:')]])\", document).numberValue === 0",
+      "Value": "labelPinTry1",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"/descendant::div[@class='card-number']/span[preceding-sibling::b[contains(., 'PIN:')]]\", document).iterateNext().innerText",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinTry1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='pin'])\", document).numberValue === 0",
+      "Value": "labelPinDone",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"/descendant::div[@class='pin']\", document).iterateNext().innerText.replace(/pin:\\s*/i, '')",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelPinDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${pinTemp}",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Values ${pinTemp} and pin ${pin}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.evaluate(\"count(/descendant::div[@class='value'])\", document).numberValue === 0",
+      "Value": "labelAmountTry2",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "//*/div[@class='value']",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${amount}.replace(/[\\u2070-\\u209f\\u00b0-\\u00be]+/g,'');",
+      "Value": "amount",
+      "Description": "Remove superscript or subscript characters"
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelAmountDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountTry2",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${cardNumberTemp}.replace('\\n','').replace(/.*(\\$[\\.\\d]+).*/gm,'\\$1');",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelAmountDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelWriteCsv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelStyle1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=lblCertAmount",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return Number.parseFloat(${amountTemp}.replace(/[$]/g,''));",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "gotoIf",
+      "Target": "document.getElementById('lblCertBarCode') === null",
+      "Value": "labelStyle1CardNumberTry1",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.getElementById('lblCertBarCode').innerText.trim();",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "labelStyle1CardNumberDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelStyle1CardNumberTry1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeAttribute",
+      "Target": "id=imgCertBarCode@src",
+      "Value": "fullUrl",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return new URL('fake:///${fullUrl}').searchParams.get(\"CBID\");",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelStyle1CardNumberDone",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=lblPin",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "labelWriteCsv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${cardNumber}.replace(/-/g, '');",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${orderNumberOverride}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${orderNumberOverride}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${brandOverride}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${brandOverride}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${pin}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${emailOverride}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${emailOverride}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "VCDelivery",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
