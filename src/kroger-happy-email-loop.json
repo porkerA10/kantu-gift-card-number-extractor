@@ -1,0 +1,228 @@
+{
+  "Name": "Kroger Happy Email Loop",
+  "CreationDate": "2021-12-9",
+  "Commands": [
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return 0;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your Order is Complete!')]]",
+      "Value": "emailCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${emailCount} emails to loop over",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentEmail} < ${emailCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${currentEmail} + 1;",
+      "Value": "currentEmail",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@aria-label='Message list']/descendant::span[text()[contains(.,'Your Order is Complete!')]][${currentEmail}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[label='To:']/ul/li[1]",
+      "Value": "email",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return 0;",
+      "Value": "currentLink",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=/descendant::a[text()='Click to Access eGift']",
+      "Value": "linkCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found ${linkCount} links in the email",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${currentLink} < ${linkCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${currentLink} + 1;",
+      "Value": "currentLink",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::a[text()='Click to Access eGift'][${currentLink}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForPageToLoad",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=1",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=value",
+      "Value": "amountTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return /[\\w: $]*?([\\d\\.]+)/.exec(${amountTemp})[1];",
+      "Value": "amount",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@class='cardInfo']/h1",
+      "Value": "brandTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${brandTemp}.replace('Enjoy Your','').replace('Gift Card!','').trim();",
+      "Value": "brand",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "id=cardNumber2",
+      "Value": "cardNumberTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${cardNumberTemp}.replace(/ /g,'');",
+      "Value": "cardNumber",
+      "Description": ""
+    },
+    {
+      "Command": "storeText",
+      "Target": "/descendant::div[@id='pinContainer']/p",
+      "Value": "pinTemp",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript_Sandbox",
+      "Target": "return ${pinTemp}.replace('PIN:','').replace(/\\s/g,'');",
+      "Value": "pin",
+      "Description": ""
+    },
+    {
+      "Command": "storeAttribute",
+      "Target": "/descendant::a[@id='websiteRedem']@href",
+      "Value": "redeemSite",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Found amounttemp ${amountTemp} amount: ${amount} ${cardNumber} unkay orig ${cardNumberTemp} pin is temp ${pinTemp} and ${pin}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${brand}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${amount}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${cardNumber}/${pin}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${redeemSite}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!URL}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${email}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "HappyCards",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "TAB=CLOSEALLOTHER",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
