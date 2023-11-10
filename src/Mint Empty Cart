@@ -1,0 +1,60 @@
+{
+  "Name": "Mint Empty Cart",
+  "CreationDate": "2023-11-9",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "https://catalog.usmint.gov/cart",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "id=itemscontainer",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"count(/descendant::div[@class='cart-row-quant-remove'])\", document).numberValue",
+      "Value": "countToDelete",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${countToDelete} > 0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/descendant::div[@class='cart-row-quant-remove'][1]/button",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "/descendant::div[@class='ui-dialog-buttonset']",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/descendant::div[@class='ui-dialog-buttonset']/button/span[text()='Yes']",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return Number(${countToDelete})-1",
+      "Value": "countToDelete",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
