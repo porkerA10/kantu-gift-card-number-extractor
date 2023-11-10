@@ -1,0 +1,144 @@
+{
+  "Name": "Mint Read CSV",
+  "CreationDate": "2023-11-9",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "https://google.com",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "csvReadArray",
+      "Target": "mintautobuy.csv",
+      "Value": "configFullArray",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${configFullArray}[1]",
+      "Value": "config",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[0]",
+      "Value": "testMode",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[1]",
+      "Value": "itemNumber",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[2]",
+      "Value": "quantity",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[3]",
+      "Value": "minutesToRun",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[4]",
+      "Value": "retrySeconds",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[5]",
+      "Value": "burstRefreshMode",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[6]",
+      "Value": "username",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[7]",
+      "Value": "password",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[8]",
+      "Value": "ccName",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[9]",
+      "Value": "ccNumber",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[10]",
+      "Value": "ccSecCode",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[11]",
+      "Value": "ccExpMonthText",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[12]",
+      "Value": "ccExpMonthNumber",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[13]",
+      "Value": "ccExpYear",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[14]",
+      "Value": "phone",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[15]",
+      "Value": "addressLine1",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[16]",
+      "Value": "addressLine2",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[17]",
+      "Value": "city",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[18]",
+      "Value": "state",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return ${config}[19]",
+      "Value": "zipCode",
+      "Description": ""
+    }
+  ]
+}
