@@ -1,0 +1,252 @@
+{
+  "Name": "Mint Buy One In Cart",
+  "CreationDate": "2023-11-9",
+  "Commands": [
+    {
+      "Command": "run",
+      "Target": "Mint Read CSV",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "120",
+      "Value": "!timeout_wait",
+      "Description": ""
+    },
+    {
+      "Command": "open",
+      "Target": "https://catalog.usmint.gov/cart",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "id=checkoutShippingAccordionItem",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.getElementById('dwfrm_singleshipping_addressList_submit') !== null && document.evaluate(\"count(/descendant::div[@id='dwfrm_singleshipping_addressList_submit' and contains(@style,'none')])\", document).numberValue === 0",
+      "Value": "addressFormVisible",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${addressFormVisible}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_singleshipping_shippingAddress_addressFields_phone",
+      "Value": "${phone}",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_singleshipping_shippingAddress_addressFields_address1",
+      "Value": "${addressLine1}",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_singleshipping_shippingAddress_addressFields_city",
+      "Value": "${city}",
+      "Description": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=dwfrm_singleshipping_shippingAddress_addressFields_states_state",
+      "Value": "label=${state}",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_singleshipping_shippingAddress_addressFields_zip",
+      "Value": "${zipCode}",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=submitshippingbtn",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "id=checkoutConfirmOrderAccordionItem",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "id=dwfrm_billing_paymentMethods_creditCard_owner",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_billing_paymentMethods_creditCard_owner",
+      "Value": "${ccName}",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_billing_paymentMethods_creditCard_number",
+      "Value": "${ccNumber}",
+      "Description": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=dwfrm_billing_paymentMethods_creditCard_month",
+      "Value": "label=${ccExpMonthText}",
+      "Description": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=dwfrm_billing_paymentMethods_creditCard_year",
+      "Value": "label=${ccExpYear}",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=dwfrm_billing_paymentMethods_creditCard_cvn",
+      "Value": "${ccSecCode}",
+      "Description": ""
+    },
+    {
+      "Command": "executeAsyncScript",
+      "Target": "return document.evaluate(\"count(/descendant::select[@id='dwfrm_billing_addressList']/option[@selected='selected' and @Value='Home'])\", document).numberValue",
+      "Value": "countOfSelectedHomeAddress",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${countOfSelectedHomeAddress}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=dwfrm_billing_addressList",
+      "Value": "index=1",
+      "Description": ""
+    },
+    {
+      "Command": "else",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=checkoutContinuePaymentDelegator",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "id=formAgreement",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!lastcommandOK}",
+      "Value": "",
+      "Description": "Sometimes there is a page load and the terms box is not available, so try again"
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${countOfSelectedHomeAddress}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=dwfrm_billing_addressList",
+      "Value": "index=1",
+      "Description": ""
+    },
+    {
+      "Command": "else",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=checkoutContinuePaymentDelegator",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!ErrorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "waitForVisible",
+      "Target": "id=formAgreement",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=formAgreement",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${testMode}.toLowerCase()==='false'",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=submitOrderButton",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
